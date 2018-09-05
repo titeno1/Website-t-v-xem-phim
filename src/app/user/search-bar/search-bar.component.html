@@ -1,0 +1,25 @@
+<div class="search">
+  <div class="search-bar d-flex align-items-center justify-content-center" (click)="moDivSearch();">
+    <i class="fa fa-search animated bounceInLeft" *ngIf="!status; else showClose"></i>
+    <ng-template #showClose>
+      <i class="fa fa-times animated bounceInRight"></i>
+    </ng-template>
+  </div>
+  <div class="search-area" [ngClass]="{'search-area--open': status}">
+    <div class="search-box animated fadeIn ml-auto mr-auto mt-sm-4" *ngIf="status">
+      <input id="go-search" type="text" placeholder="Nhập từ khóa tìm kiếm..." [(ngModel)]="filter" (keyup)="getKeyword($event)">
+      <p class="text-white pt-3" *ngIf="!statusSearch; else search">Những tìm kiếm phổ biến:</p>
+      <ng-template #search>
+        <p class="disKeyWord pt-3">Tìm kiếm theo từ khóa "
+          <span>{{searchKeyword}}</span>"</p>
+      </ng-template>
+    </div>
+    <div class="search-content animated fadeIn" *ngIf="status">
+      <div class="search-hienthi">
+      </div>
+      <div class="search-trend">
+        <app-item-phim-search [film]="itemFilm" *ngFor="let itemFilm of listFilm | filter:filter; let i = index"></app-item-phim-search>
+      </div>
+    </div>
+  </div>
+</div>

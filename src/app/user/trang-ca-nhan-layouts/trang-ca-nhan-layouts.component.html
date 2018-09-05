@@ -1,0 +1,120 @@
+<div class="content">
+  <div class="container tcn">
+    <div class="row">
+      <div class="col-12">
+        <div class="box-user">
+          <p class="text-center logo">
+            <i class="fa fa-user-circle-o"></i>
+          </p>
+          <p class="text-center name"> {{infoUser.HoTen}} </p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-ThongTin-list" data-toggle="list" href="#list-ThongTin"
+            role="tab" aria-controls="ThongTin">Thông Tin</a>
+          <a class="list-group-item list-group-item-action" id="list-suaThongTin-list" data-toggle="list" href="#list-suaThongTin"
+            role="tab" aria-controls="suaThongTin" (click)="upInfo()">Sửa Thông Tin</a>
+          <a class="list-group-item list-group-item-action" id="list-matkhau-list" data-toggle="list" href="#list-matkhau"
+            role="tab" aria-controls="matkhau">Mật Khẩu</a>
+          <a class="list-group-item list-group-item-action" id="list-lichsu-list" data-toggle="list" href="#list-lichsu"
+            role="tab" aria-controls="lichsu" (click)="layLichSu()">Lịch Sử Đặt Vé</a>
+        </div>
+      </div>
+      <div class="col-12 pt-3 pt-sm-0 col-sm-8">
+        <div class="tab-content" id="nav-tabContent">
+          <!-- Tab Thông Tin -->
+          <div class="tab-pane animated fadeIn show active" id="list-ThongTin" role="tabpanel" aria-labelledby="list-ThongTin-list">
+            <p> <span class="title">Tài Khoản : </span> {{infoUser.TaiKhoan}}</p>
+            <p> <span class="title">Họ và Tên : </span> {{infoUser.HoTen}}</p>
+            <p> <span class="title">Email : </span> {{infoUser.Email}}</p>
+            <p> <span class="title">Số Điện Thoại: </span> {{infoUser.SoDT}}</p>
+          </div>
+          <!-- Tab Sửa Thông Tin -->
+          <div class="tab-pane animated fadeIn" id="list-suaThongTin" role="tabpanel" aria-labelledby="list-suaThongTin-list">
+            <form #formThongTin="ngForm" (ngSubmit)="UpdateInfo(formThongTin.value)">
+              <div class="form-group">
+                <label for="ten">Tên :</label>
+                <input class="info-input" type="text" placeholder="Tên?" #hoten='ngModel' ngModel name="HoTen" required
+                  [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+            "ẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"'>
+              </div>
+              <div class="form-group">
+                <label for="ten">Email :</label>
+                <input class="info-input" type="text" placeholder="Email?" #email='ngModel' ngModel name="Email"
+                  required [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"'>
+              </div>
+              <div class="form-group">
+                <label for="ten">Số Điện Thoại :</label>
+                <input class="info-input" type="text" placeholder="Số điện thoại?" #sdt='ngModel' ngModel name="SoDT"
+                  required [pattern]='"^[0-9]{10,11}$"'>
+              </div>
+              <button type="submit" class="btn" [disabled]="formThongTin.invalid">
+                <p>Cập Nhật</p>
+              </button>
+            </form>
+            <div class="canhbao pt-3" [ngSwitch]="statusUpDate">
+              <p *ngSwitchDefault></p>
+              <p class="text-danger animated fadeInUp" *ngSwitchCase="'fail'">
+                <i class="tbfalse-icon fa fa-times pr-3"></i>KIỂM TRA LẠI THÔNG TIN</p>
+              <p class="text-success animated fadeInUp" *ngSwitchCase="'succ'">
+                <i class="tbfalse-icon fa fa-check pr-3"></i>CẬP NHẬT THÀNH CÔNG</p>
+            </div>
+          </div>
+          <!-- Password -->
+          <div class="tab-pane animated fadeIn" id="list-matkhau" role="tabpanel" aria-labelledby="list-matkhau-list">
+            <form #formMatKhau="ngForm" (ngSubmit)="UpdateMK(formMatKhau.value)">
+              <div class="form-group">
+                <label for="mkcu">Mật khẩu cũ :</label>
+                <input class="info-input" type="password" placeholder="Mật khẩu cũ?" #mkCu='ngModel' ngModel name="MatKhauCu"
+                  required minlength="3" maxlength="15">
+              </div>
+              <div class="form-group">
+                <label for="mkmoi">Mật khẩu mới :</label>
+                <input class="info-input" type="password" placeholder="Mật khẩu mới?" #mkMoi='ngModel' ngModel name="MatKhauMoi"
+                  required minlength="3" maxlength="15">
+              </div>
+              <div class="form-group">
+                <label for="remkmoi">Nhập lại mật khẩu mới</label>
+                <input class="info-input" type="password" placeholder="Nhập lại mật khẩu mới?" #remkMoi='ngModel'
+                  ngModel name="reMatKhauMoi" required minlength="3" maxlength="15">
+              </div>
+              <button type="submit" class="btn" [disabled]="formMatKhau.invalid">
+                <p>Đổi Mật Khẩu</p>
+              </button>
+            </form>
+            <div class="canhbao pt-3" [ngSwitch]="statusUpDate">
+              <p *ngSwitchDefault></p>
+              <p class="text-danger animated fadeInUp" *ngSwitchCase="'fail'">
+                <i class="tbfalse-icon fa fa-times pr-3"></i>ĐỔI MẬT KHẨU KHÔNG THÀNH CÔNG</p>
+              <p class="text-success animated fadeInUp" *ngSwitchCase="'succ'">
+                <i class="tbfalse-icon fa fa-check pr-3"></i>ĐỔI MẬT KHẨU THÀNH CÔNG</p>
+              <p class="text-danger animated fadeInUp" *ngSwitchCase="'failMkCu'">
+                <i class="tbfalse-icon fa fa-check pr-3"></i>MẬT KHẨU CŨ KHÔNG ĐÚNG</p>
+              <p class="text-danger animated fadeInUp" *ngSwitchCase="'failMkMoi'">
+                <i class="tbfalse-icon fa fa-check pr-3"></i>MẬT KHẨU MỚI KHÔNG TRÙNG NHAU</p>
+            </div>
+          </div>
+          <!-- Lịch sử đặt vé -->
+          <div class="tab-pane animated fadeIn" id="list-lichsu" role="tabpanel" aria-labelledby="list-lichsu-list">
+            <p *ngIf="!statusLichSu; else lichsuDatVe" class="statusLS">Bạn chưa đặt vé lần nào !!!</p>
+            <ng-template #lichsuDatVe>
+              <div class="item-lichsu mb-3" *ngFor="let ve of veDaDat">
+                <p>Tên phim: <span>{{ve.TenPhim}}</span></p>
+                <p>Rạp :<span>{{ve.Rap}}</span></p>
+                <p>Mã ghế :<span>{{ve.MaGhe}}</span></p>
+                <p>Ngày đặt : <span>{{ve.NgayDat | date:'dd - MM - yyyy'}}</span></p>
+                <p>Giá vé : <span>{{ve.GiaVe}}</span></p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-contact></app-contact>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.item-film-search {
+  padding: 15px;
+  width: 100%;
+}
+
+.img-film {
+  width: 30%;
+}
+
+.cont-film {
+  width: 70%;
+  padding-left: 10px;
+}
+
+.img-film img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.name-film {
+  color: #FFCE00;
+}
+
+.btn-film {
+  color: #908199;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.btn-film:hover {
+  text-shadow: 0 0 2px gold, 0 0 4px gold;
+  color: white;
+}
+
+.cont-film div:focus {
+  outline: none;
+}

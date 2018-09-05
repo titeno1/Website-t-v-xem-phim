@@ -1,0 +1,18 @@
+<div class="item-film-search d-flex">
+  <div class="img-film">
+    <img [src]="film.HinhAnh" alt="">
+  </div>
+  <div class="cont-film">
+    <p class="name-film">{{film.TenPhim}}</p>
+    <div [routerLink]="['/chitiet',film.MaPhim]">
+      <p class="btn-film">
+        <i class="fa fa-outdent"></i> Chi tiết
+      </p>
+    </div>
+    <div [routerLink]="['/datve',film.MaPhim]" *ngIf="statusDatVe">
+      <p class="btn-film">
+        <i class="fa fa-shopping-cart"></i> Đặt vé
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+.form-danhgia {
+  width: 100%;
+}
+
+.form-danhgia h3 {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold, 0 0 40px gold;
+}
+
+.col-sm-6 {
+  height: 100vh;
+}
+
+.input-name,
+.input-area {
+  height: 60px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #FFCE00;
+  font-size: 20px;
+  color: white;
+  padding-left: 10px;
+  transition: all 0.5s;
+}
+
+.input-name::placeholder,
+.input-area::placeholder {
+  font-size: 20px;
+}
+
+.input-name:focus,
+.input-area:focus {
+  outline: none;
+}
+
+.btn-danhgia {
+  overflow: hidden;
+  height: 0;
+  font-size: 50px;
+  border: none;
+  background-color: transparent;
+  color: #FFCE00;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.btn-danhgia:focus {
+  border: none;
+  outline: none;
+}
+
+.btn-active {
+  height: 63px;
+}
+
+.hr-btn {
+  margin: 0;
+}
+
+/* Rate */
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
+
+/* Basic styles */
+.rate {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.rate input {
+  display: none;
+}
+
+label {
+  float: right;
+  font-size: 0;
+  color: #d9d9d9;
+}
+
+label:before {
+  content: "\f005";
+  font-family: FontAwesome;
+  font-size: 40px;
+}
+
+label:hover,
+label:hover~label {
+  color: #fcd000;
+  transition: 0.2s;
+}
+
+.rate input:checked~label {
+  color: #ccac00;
+}
+
+.rate input:checked~label:hover,
+.rate input:checked~label:hover~label {
+  color: #fcd000;
+  transition: 0.2s;
+}
+
+/* Half-star*/
+.star-half {
+  position: relative;
+}
+
+.star-half:before {
+  position: absolute;
+  content: "\f089";
+  padding-right: 0;
+}
+
+/* Đánh gia */
+.item-danhgia {
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.hienthi-danhgia {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  height: 80%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.title {
+  width: 30%;
+  border-right: 1px solid #d9d9d9;
+}
+
+.content {
+  padding-left: 10px;
+  width: 70%;
+}
+
+/* -----------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .col-sm-6 {
+    height: auto;
+  }
+
+  .form-danhgia h3 {
+    font-size: 20px;
+  }
+
+  .hienthi-danhgia {
+    margin: 0;
+  }
+}

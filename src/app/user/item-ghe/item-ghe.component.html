@@ -1,0 +1,8 @@
+<div *ngIf="!statusGhe; else GheDaDat">
+  <img src="./../../../assets/img/icon/cinema-chair-chuadat.svg" alt="" width="20px" height="20px" (click)="DatGhe()">
+</div>
+<ng-template #GheDaDat>
+  <div>
+    <img src="./../../../assets/img/icon/cinema-chair-vang.svg" alt="" width="20px" height="20px" (click)="DatGhe()">
+  </div>
+</ng-template>

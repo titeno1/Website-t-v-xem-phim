@@ -1,0 +1,38 @@
+.tintuc {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.title {
+  transform: scale(1.5, 1.5);
+}
+
+.title p {
+  color: white;
+  text-shadow: 0 0 2px gold,
+    0 0 4px gold,
+    0 0 8px gold,
+    0 0 16px gold;
+}
+
+.col-giua {
+  margin-top: 30px;
+}
+
+.col-phim {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 80vh;
+}
+
+
+/* ----------------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .title p {
+    font-size: 10px;
+  }
+
+  .col-phim {
+    height: 50vh;
+  }
+}

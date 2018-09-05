@@ -1,0 +1,41 @@
+.list-phim {
+  height: 100vh;
+}
+
+.btn-tab {
+  width: 100%;
+}
+
+.btn-tab div {
+  width: 50%;
+  padding: 0 30px;
+}
+
+.btn-tab div p {
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+.btn-tab div p:hover {
+  color: white;
+  text-shadow: 0 0 2px gold, 0 0 4px gold, 0 0 8px gold, 0 0 16px gold;
+  transform: scale(1.5, 1.5);
+}
+
+.active {
+  color: white;
+  text-shadow: 0 0 2px gold, 0 0 4px gold, 0 0 8px gold, 0 0 16px gold;
+  transform: scale(1.5, 1.5);
+}
+
+/* ----------------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .btn-tab div p {
+    font-size: 10px;
+  }
+
+  .list-phim {
+    height: auto;
+  }
+}

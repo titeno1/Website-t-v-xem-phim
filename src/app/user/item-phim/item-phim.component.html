@@ -1,0 +1,28 @@
+<div class="card-phim">
+  <img [src]="phimItem.HinhAnh" alt="">
+  <div class="card-info">
+    <div class="info-time pl-3 pt-5">
+      <p>
+        4D MAX
+      </p>
+    </div>
+    <div class="info-title pl-3">
+      <p class="title">{{phimItem.TenPhim}}</p>
+    </div>
+  </div>
+  <div class="card-hover text-right pr-2">
+    <div class="card-hover-content trailer" (click)="UrlTrailer(phimItem.Trailer,phimItem.TenPhim)" data-toggle="modal"
+      data-target="#modalTrailer">
+      <span class="mr-4 animated fadeInLeft">Trailer</span>
+      <i class="fa fa-play"></i>
+    </div>
+    <div class="card-hover-content chitiet" [routerLink]="['/chitiet',phimItem.MaPhim]">
+      <span class="mr-4 animated fadeInLeft">Chi tiết</span>
+      <i class="fa fa-outdent"></i>
+    </div>
+    <div class="card-hover-content datve" [routerLink]="['/datve',phimItem.MaPhim]" *ngIf="statusDatVe">
+      <span class="mr-4 animated fadeInLeft">Đặt vé</span>
+      <i class="fa fa-shopping-cart"></i>
+    </div>
+  </div>
+</div>

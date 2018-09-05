@@ -1,0 +1,43 @@
+/* Ngày */
+
+.title-ngay,
+.title-thoigian {
+  color: #FFCE00;
+}
+
+.item-ngay,
+.item-time {
+  display: inline-block;
+  color: white;
+  padding: 5px 8px;
+  margin: 0 18px;
+  transition: all 0.2s;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.item-time {
+  border-radius: 25%;
+}
+
+.item-ngay:hover,
+.item-ngay.active,
+.item-time:hover,
+.item-time.active {
+  background-color: #FFCE00;
+  color: black;
+}
+
+.pick-ngay,
+.pick-time {
+  border-top: 1px solid #ffce0017;
+  padding: 10px 0;
+}
+
+.ngay-duoc-chon,
+.time-duoc-chon {
+  color: white;
+  text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+}

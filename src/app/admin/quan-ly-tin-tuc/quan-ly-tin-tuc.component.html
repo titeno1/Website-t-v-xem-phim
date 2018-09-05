@@ -1,0 +1,181 @@
+<div class="app-title">
+  <div>
+    <h1>
+      <i class="fa fa-th-list"></i> Quản Lý Tin Tức</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <i class="fa fa-home fa-lg">Trang Chủ</i>
+    </li>
+    <li class="breadcrumb-item active">
+      <a href="#">Quản Lý Tin Tức</a>
+    </li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="row">
+        <div class="col-md-6">
+          <button id="btnThemtin" class="btn btn-success mb-2" data-toggle="modal" data-target="#exampleModal">Thêm
+            Tin
+            <i class="icon-user"></i>
+          </button>
+        </div>
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="tìm kiếm...">
+        </div>
+      </div>
+      <div class="table-responsive ">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Mã Tin</th>
+              <th>Tiêu Đề</th>
+              <th>Hình Ảnh Tiêu Đề</th>
+              <th>Nội Dung</th>
+              <th>Hình Ảnh Nội Dung</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tin of mangTin | orderBy: key : reverse | filter:filter | paginate:{itemsPerPage:4,currentPage:p}; let i = index">
+              <td>{{i}}</td>
+              <td>{{tin.Ma}}</td>
+              <td>{{tin.TieuDe}}</td>
+              <td><img [src]="tin.HinhAnhTieuDe" alt="" class="img-fluid" width="100px;"/></td>
+              <td><textarea rows="5" cols="40">{{tin.NoiDung}}</textarea></td>
+              <td><img [src]="tin.HinhAnhNoiDung" alt="" class="img-fluid" width="100px;"/></td>
+              <td>
+                <button class="btn btn-outline-primary"
+                  #btnSua
+                  [attr.data-ma]="tin.Ma"
+                  [attr.data-tieuDe]="tin.TieuDe"
+                  [attr.data-hinhAnhTieuDe]="tin.HinhAnhTieuDe"
+                  [attr.data-noiDung]="tin.NoiDung"
+                  [attr.data-hinhAnhNoiDung]="tin.HinhAnhNoiDung"
+                  (click)="Sua(btnSua)"
+                  data-toggle="modal" data-target="#ModalCapNhat"
+                ><i class="fa fa-edit"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm Tin Tức</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="btnDongForm" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #formThemTin="ngForm" (ngSubmit)="ThemTin(formThemTin.value)">
+          <div class="form-group">
+            <label for="Ma">Mã Tin</label>
+            <input class="form-control" required type="text" #Ma='ngModel' placeholder="Mã tin tức..." name="Ma" ngModel>
+            <div *ngIf="Ma.errors && (Ma.touched || Ma.dirty)">
+              <div class="alert alert-danger" *ngIf="Ma.errors.required">Vui lòng nhập mã tin tức ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="TieuDe">Tiêu Đề</label>
+            <input class="form-control" required type="text" #tieuDe='ngModel' placeholder="Tiêu đề..." name="TieuDe" ngModel>
+            <div *ngIf="tieuDe.errors && (tieuDe.touched || tieuDe.dirty)">
+              <div class="alert alert-danger" *ngIf="tieuDe.errors.required">Vui lòng nhập tiêu đề tin ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="HinhAnhTieuDe">Hình Ảnh Tiêu Đề</label>
+            <input class="form-control" required type="text" #hinhAnhtD='ngModel' placeholder="Hình ảnh tiêu đề..." name="HinhAnhTieuDe" ngModel>
+            <div *ngIf="hinhAnhtD.errors && (hinhAnhtD.touched || hinhAnhtD.dirty)">
+              <div class="alert alert-danger" *ngIf="hinhAnhtD.errors.required">Vui lòng nhập hình ảnh của tiêu đề ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="NoiDung">Nội Dung</label>
+            <textarea cols="45" rows="5" class="form-control" required  #noiDung='ngModel' placeholder="Nội Dung..." name="NoiDung" ngModel></textarea>
+            <div *ngIf="noiDung.errors && (noiDung.touched || noiDung.dirty)">
+              <div class="alert alert-danger" *ngIf="noiDung.errors.required">Vui lòng nhập nội dung! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="HinhAnhNoiDung">Hình Ảnh Nội Dung</label>
+            <input class="form-control" required type="text" #imgnoiDung='ngModel' placeholder=" Hình ảnh nội dung..." name="HinhAnhNoiDung" ngModel>
+            <div *ngIf="imgnoiDung.errors && (imgnoiDung.touched || imgnoiDung.dirty)">
+              <div class="alert alert-danger" *ngIf="imgnoiDung.errors.required">Vui lòng nhập hình ảnh nội dung! </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" [disabled]="formThemTin.invalid" type="submit">Thêm Tin Tức</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Cập Nhật -->
+<div class="modal fade" id="ModalCapNhat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Chỉnh Sửa Tin Tức</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="btnDongformCN" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #formCapNhat="ngForm" (ngSubmit)="CapNhat(formCapNhat.value)">
+          <div class="form-group">
+            <label for="Ma">Mã Tin</label>
+            <input class="form-control" required type="text" #ma='ngModel' placeholder="Mã tin tức..." name="Ma" ngModel>
+            <div *ngIf="ma.errors && (ma.touched || ma.dirty)">
+              <div class="alert alert-danger" *ngIf="ma.errors.required">Vui lòng nhập mã tin tức ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="TieuDe">Tiêu Đề</label>
+            <input class="form-control" required type="text" #tieude='ngModel' placeholder="Tiêu đề..." name="TieuDe" ngModel>
+            <div *ngIf="tieude.errors && (tieude.touched || tieude.dirty)">
+              <div class="alert alert-danger" *ngIf="tieude.errors.required">Vui lòng nhập tiêu đề tin ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="HinhAnhTieuDe">Hình Ảnh Tiêu Đề</label>
+            <input class="form-control" required type="text" #hinhAnhTD='ngModel' placeholder="Hình ảnh tiêu đề..." name="HinhAnhTieuDe" ngModel>
+            <div *ngIf="hinhAnhTD.errors && (hinhAnhTD.touched || hinhAnhTD.dirty)">
+              <div class="alert alert-danger" *ngIf="hinhAnhTD.errors.required">Vui lòng nhập hình ảnh của tiêu đề ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="NoiDung">Nội Dung</label>
+            <input class="form-control" required type="text" #noidung='ngModel' placeholder="Nội Dung..." name="NoiDung" ngModel>
+            <div *ngIf="noidung.errors && (noidung.touched || noidung.dirty)">
+              <div class="alert alert-danger" *ngIf="noidung.errors.required">Vui lòng nhập nội dung! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="HinhAnhNoiDung">Hình Ảnh Nội Dung</label>
+            <input class="form-control" required type="text" #imgnoidung='ngModel' placeholder=" Hình ảnh nội dung..." name="HinhAnhNoiDung" ngModel>
+            <div *ngIf="imgnoidung.errors && (imgnoidung.touched || imgnoidung.dirty)">
+              <div class="alert alert-danger" *ngIf="imgnoidung.errors.required">Vui lòng nhập hình ảnh nội dung! </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" [disabled]="formCapNhat.invalid" type="submit" id="btnDong">Cập Nhật Tin Tức</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

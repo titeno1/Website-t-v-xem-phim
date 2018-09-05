@@ -1,0 +1,30 @@
+<div class="tintuc container pt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="title">
+        <p class="text-center">TIN TỨC</p>
+      </div>
+    </div>
+    <div class="col-sm-4 col-6 col-phim">
+      <div class="row">
+        <div class="col-12 mt-3" *ngFor="let tinphim of listTinPhim">
+          <app-item-tin-tuc [tinTuc]="tinphim"></app-item-tin-tuc>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-6 col-giua col-phim">
+      <div class="row">
+        <div class="col-12 mt-3" *ngFor="let tinkm of listTinKM">
+          <app-item-tin-tuc [tinTuc]="tinkm"></app-item-tin-tuc>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-12 col-phim">
+      <div class="row">
+        <div class="col-12 mt-3" *ngFor="let tinth of listTinTH">
+          <app-item-tin-tuc [tinTuc]="tinth"></app-item-tin-tuc>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

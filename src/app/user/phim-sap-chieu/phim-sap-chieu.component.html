@@ -1,0 +1,29 @@
+<div class="row group-phim">
+  <div class="col-3 py-3 px-auto d-flex align-content-center justify-content-center animated fadeIn" *ngFor="let phim of dsphimGroup">
+    <app-item-phim [phimItem]="phim"></app-item-phim>
+  </div>
+  <div class="btn-next" (click)="nextGroupPhim()">
+    <i class="fa fa-long-arrow-right"></i>
+  </div>
+  <div class="btn-prev">
+    <i class="fa fa-long-arrow-left" (click)="prevGroupPhim()"></i>
+  </div>
+</div>
+<div id="carouselPhimMobi" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item" *ngFor="let phim of dsphim; index as i" [ngClass]="{'active': i==0}">
+      <img class="back-item-phim d-block w-100" src="././../../../assets/img/back-item-phim.jpeg">
+      <div class="carousel-caption d-flex justify-content-center">
+        <app-item-phim [phimItem]="phim"></app-item-phim>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselPhimMobi" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselPhimMobi" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

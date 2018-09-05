@@ -1,0 +1,46 @@
+<section class="material-half-bg">
+  <div class="cover"></div>
+</section>
+<section class="login-content">
+  <div class="logo">
+    <h1>Admin</h1>
+  </div>
+  <div class="login-box">
+    <form class="login-form" #formDangNhap="ngForm" (ngSubmit)="DangNhap(formDangNhap.value)">
+      <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+      <div class="form-group">
+        <label class="control-label">Tài Khoản</label>
+        <input class="form-control" required type="text" #taikhoan='ngModel' placeholder="Tài Khoản" name="TaiKhoan" ngModel>
+        <div *ngIf="taikhoan.errors && (taikhoan.touched || taikhoan.dirty)">
+          <div class="alert alert-danger" *ngIf="taikhoan.errors.required">Vui lòng nhập tài khoản ! </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Mật Khẩu</label>
+        <input class="form-control" required type="password" #matkhau='ngModel' placeholder="Mật Khẩu" name="MatKhau" ngModel>
+        <div *ngIf="matkhau.errors && (matkhau.touched || matkhau.dirty)">
+          <div class="alert alert-danger" *ngIf="matkhau.errors.required">Vui lòng nhập Mật Khẩu ! </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="utility">
+          <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Quên Mật Khẩu ?</a></p>
+        </div>
+      </div>
+      <div class="form-group btn-container">
+        <button class="btn btn-primary btn-block" [disabled]="formDangNhap.invalid"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- Essential javascripts for application to work-->
+<script src="js/main.js"></script>
+<!-- The javascript plugin to display page loading on top-->
+<script src="../../../assets/js-admin/plugins/pace.min.js"></script>
+<script type="text/javascript">
+  // Login Page Flipbox control
+  $('.login-content [data-toggle="flip"]').click(function() {
+    $('.login-box').toggleClass('flipped');
+    return false;
+  });
+</script>

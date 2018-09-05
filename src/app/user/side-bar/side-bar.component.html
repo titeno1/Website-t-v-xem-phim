@@ -1,0 +1,107 @@
+<nav class="sidebar" [ngClass]="{'sidebar-sm': clickSM}">
+  <!-- Logo -->
+  <div class="sidebar-header d-flex align-items-center justify-content-center">
+    <a href="#" [routerLink]="['/']">
+      <div class="logo">
+      </div>
+    </a>
+  </div>
+  <div class="userLogin">
+    <div class="login d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#popupLogin"
+      *ngIf="daLogin; else user">
+      <p class="text-center m-0">
+        <span *ngIf="!clickSM;else login" class="animated fadeIn">ĐĂNG NHẬP</span>
+        <ng-template #login>
+          <i class="fa fa-sign-in animated fadeIn"></i>
+        </ng-template>
+      </p>
+    </div>
+    <ng-template #user>
+      <div class="user-dn" (click)="ClickUser()">
+        <p class="text-center icon-user m-0">
+          <i class="fa fa-user-circle-o"></i>
+          <br>
+        </p>
+      </div>
+      <div class="user-dn-hover text-center">
+        <p class="content-hover trangcanhan mt-3" [routerLink]="['/trangcanhan']">Trang Cá Nhân</p>
+        <p class="content-hover" (click)="DangXuat()">Thoát</p>
+      </div>
+    </ng-template>
+  </div>
+  <!-- Content Bar -->
+  <ul class="list-unstyled">
+    <li class="d-flex align-items-center justify-content-center">
+      <a #home href="#home" [ngClass]="{'fontIcon': clickSM,'active':statusSCR=='home'}" (click)="getScrollLink(home)">
+        <span *ngIf="!clickSM; else sidebarIcon1" class="animated fadeIn">HOME</span>
+        <ng-template #sidebarIcon1>
+          <i class="fa fa-home animated fadeIn"></i>
+        </ng-template>
+      </a>
+    </li>
+    <li class="d-flex align-items-center justify-content-center">
+      <a #phim href="#phim" [ngClass]="{'fontIcon': clickSM,'active':statusSCR=='phim'}" (click)="getScrollLink(phim)">
+        <span *ngIf="!clickSM; else sidebarIcon2" class="animated fadeIn">PHIM</span>
+        <ng-template #sidebarIcon2>
+          <i class="fa fa-ticket animated fadeIn"></i>
+        </ng-template>
+      </a>
+    </li>
+    <li class="d-flex align-items-center justify-content-center">
+      <a #tintuc href="#tintuc" [ngClass]="{'fontIcon': clickSM}" (click)="getScrollLink(tintuc)">
+        <span *ngIf="!clickSM; else sidebarIcon4" class="animated fadeIn">TIN TỨC</span>
+        <ng-template #sidebarIcon4>
+          <i class="fa fa-info animated fadeIn"></i>
+        </ng-template>
+      </a>
+    </li>
+    <li class="d-flex align-items-center justify-content-center">
+      <a #lienhe href="#lienhe" [ngClass]="{'fontIcon': clickSM}" (click)="getScrollLink(lienhe)">
+        <span *ngIf="!clickSM; else sidebarIcon5" class="animated fadeIn">LIÊN HỆ</span>
+        <ng-template #sidebarIcon5>
+          <i class="fa fa-address-book-o animated fadeIn"></i>
+        </ng-template>
+      </a>
+    </li>
+    <li class="d-flex align-items-center justify-content-center">
+      <button type="button" class="btn btn-link" (click)="ThuNho()">
+        <i class="fa fa-long-arrow-right xoayIconTS" [ngClass]="{'xoayIcon': clickSM}"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="sidebar-mobi">
+  <div class="sidebar-header d-flex align-items-center justify-content-center">
+    <a href="#" [routerLink]="['/']">
+      <div class="logo">
+      </div>
+    </a>
+    <div class="sidebar-item" data-toggle="modal" data-target="#popupLogin" *ngIf="daLogin; else user">
+      <i class="fa fa-sign-in animated fadeIn"></i>
+    </div>
+    <ng-template #user>
+      <div class="user-dn" (click)="ClickUser()">
+        <p class="text-center sidebar-item m-0">
+          <i class="fa fa-user-circle-o"></i>
+          <br>
+        </p>
+      </div>
+      <div class="user-dn-hover text-center">
+        <p class="content-hover trangcanhan mt-3" [routerLink]="['/trangcanhan']">Trang Cá Nhân</p>
+        <p class="content-hover" (click)="DangXuat()">Thoát</p>
+      </div>
+    </ng-template>
+    <a class="sidebar-item" #home href="#home" (click)="getScrollLinkMoblie(home)">
+      <i class="fa fa-home animated fadeIn"></i>
+    </a>
+    <a class="sidebar-item" #phim href="#phim" (click)="getScrollLinkMoblie(phim)">
+      <i class="fa fa-ticket animated fadeIn"></i>
+    </a>
+    <a class="sidebar-item" #tintuc href="#tintuc" (click)="getScrollLinkMoblie(tintuc)">
+      <i class="fa fa-info animated fadeIn"></i>
+    </a>
+    <a class="sidebar-item" #lienhe href="#lienhe" (click)="getScrollLinkMoblie(lienhe)">
+      <i class="fa fa-address-book-o animated fadeIn"></i>
+    </a>
+  </div>
+</nav>

@@ -1,0 +1,35 @@
+<app-load-page *ngIf="!statusPreLoad"></app-load-page>
+<div class="wrapper" *ngIf="statusPreLoad">
+  <div class="side-bar d-sm-flex">
+    <app-search-bar></app-search-bar>
+    <app-side-bar [statusLogin]="statusDangNhap" [statusSCR]="statusScroll"></app-side-bar>
+  </div>
+  <div class="noidung">
+    <router-outlet>
+    </router-outlet>
+  </div>
+</div>
+<!-- Modal Trailer -->
+<div id="modalTrailer" class="modal fade" id="modalTrailer" tabindex="-1" role="dialog" aria-labelledby="modalTrailerLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div data-dismiss="modal" class="btn-close-trailer" (click)="closeTrailer()">
+          <i class="fa fa-times"></i>
+        </div>
+        <app-popup-trailer></app-popup-trailer>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Đăng Nhập -->
+<div class="modal fade" id="popupLogin" tabindex="-1" role="dialog" aria-labelledby="popupLoginLabel" aria-hidden="true">
+  <div class="modal-dialog popupLoginDialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <app-dang-nhap (trangthaiDN)="statusDN($event)"></app-dang-nhap>
+      </div>
+    </div>
+  </div>
+</div>

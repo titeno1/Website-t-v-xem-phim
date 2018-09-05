@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-12 col-sm-6">
+    <div class="ngay">
+      <p class="title-ngay">
+        <i class="fa fa-calendar pr-1"></i> Chọn Ngày :
+        <span class="ngay-duoc-chon ml-1 ml-sm-5">{{ngayDuocChon | date:'dd - MM - yyyy'}}</span>
+      </p>
+      <div class="pick-ngay">
+        <div #btnNgay class="item-ngay" [ngClass]="{'active': lich.NgayChieuGioChieu==ngayDuocChon}" *ngFor="let lich of LichChieu"
+          (click)="chonNgay(btnNgay)" [attr.data-ngay]="lich.NgayChieuGioChieu" [attr.data-malichchieu]="lich.MaLichChieu">
+          {{lich.NgayChieuGioChieu | date:'dd'}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6">
+    <div class="time">
+      <p class="title-thoigian">
+        <i class="fa fa-clock-o pr-1"></i>Thời gian :
+        <span class="time-duoc-chon ml-1 ml-sm-5">{{timeDuocChon}}</span>
+      </p>
+      <div class="pick-time">
+        <div #btnTime class="item-time" [ngClass]="{'active': time==timeDuocChon }" *ngFor="let time of TimeChieu"
+          (click)="chonTime(btnTime)" [attr.data-time]="time">
+          {{time}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

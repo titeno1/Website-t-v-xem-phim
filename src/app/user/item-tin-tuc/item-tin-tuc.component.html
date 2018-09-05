@@ -1,0 +1,9 @@
+<a [routerLink]="[ '/chitietTinTuc', tinTuc.Ma ]">
+  <div class="item-tintuc">
+    <img [src]="tinTuc.HinhAnhTieuDe" alt="">
+    <div class="content pl-2 pt-3">
+      <p class="item-tintuc-tag"><i class="fa fa-tag"></i> {{loaiTin}}</p>
+      <p class="item-tintuc-title">{{tinTuc.TieuDe}}</p>
+    </div>
+  </div>
+</a>

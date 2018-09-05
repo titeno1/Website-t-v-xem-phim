@@ -1,0 +1,74 @@
+.contact {
+  width: 100%;
+}
+
+.back-contact {
+  position: relative;
+  padding-top: 30px;
+  width: 100%;
+  height: 300px;
+  background-color: black;
+}
+
+.name-cinema {
+  color: #FFCE00;
+  font-size: 35px;
+  margin: 0;
+  font-family: 'Pacifico',
+    cursive;
+}
+
+.name-sub {
+  color: #FFCE00;
+  font-family: 'Pacifico',
+    cursive;
+}
+
+.name-sub-title {
+  color: #FFCE00;
+}
+
+.social p {
+  font-size: 30px;
+  margin: 0;
+}
+
+.social p i {
+  cursor: pointer;
+}
+
+.social p i:hover {
+  color: #FFCE00;
+}
+
+.mucluc:hover {
+  cursor: pointer;
+  color: #FFCE00;
+}
+
+.logo {
+  margin: 20px 0;
+  width: 50px;
+  height: 70px;
+  border: 2px solid #FFCE00;
+  background-color: transparent;
+}
+
+.so-luot {
+  color: #FFCE00;
+  font-size: 30px;
+  font-family: 'Pacifico',
+    cursive;
+}
+
+.sub-soluot {
+  font-family: 'Pacifico',
+    cursive;
+}
+
+/* ----------------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .back-contact {
+    height: auto;
+  }
+}

@@ -1,0 +1,231 @@
+.sidebar {
+  position: relative;
+  background-color: #0000004f;
+  width: 200px;
+  height: 100vh;
+  transition: all 0.5s;
+}
+
+.sidebar-sm {
+  background-color: black;
+  width: 80px;
+}
+
+.sidebar .sidebar-header {
+  padding-top: 25px;
+}
+
+.sidebar ul {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.sidebar ul li {
+  /* transform: rotate(-90deg); */
+  /* margin: 20px 0; */
+  height: 50px;
+  /* margin-left: 40px; */
+}
+
+.sidebar ul li a {
+  position: relative;
+  outline: none;
+  color: #908199;
+  display: block;
+  font-size: 12px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  color: #FFCE00;
+  text-decoration: none;
+}
+
+.btn-link {
+  color: #FFCE00;
+}
+
+/* Effect */
+.sidebar ul li a::before,
+.sidebar ul li a::after {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+  transition: transform 0.3s, opacity 0.2s;
+}
+
+.sidebar ul li a::before {
+  margin-right: 10px;
+  content: '[';
+  -webkit-transform: translateX(20px);
+  -moz-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.sidebar ul li a::after {
+  margin-left: 10px;
+  content: ']';
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.sidebar ul li a:hover::before,
+.sidebar ul li a:hover::after,
+.sidebar ul li a:focus::before,
+.sidebar ul li a:focus::after,
+.sidebar ul li a.active::before,
+.sidebar ul li a.active::after {
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+/* LOGO */
+.logo {
+  margin: 20px 0;
+  width: 30px;
+  height: 40px;
+  border: 2px solid #FFCE00;
+  background-color: transparent;
+  transition: all 2s;
+  animation-name: xoay-logo;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+  cursor: pointer;
+}
+
+@keyframes xoay-logo {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.logo-name {
+  color: white;
+  text-align: left;
+}
+
+.logo-name p {
+  margin: 0;
+}
+
+/* ICON */
+.fontIcon {
+  font-size: 25px !important;
+}
+
+.xoayIconTS {
+  transition: all 1s;
+  transform: rotate(-180deg);
+}
+
+.xoayIcon {
+  transform: rotateZ(0deg);
+}
+
+/* LOGIN */
+.login {
+  height: 50px;
+  display: inline-block;
+}
+
+.login p {
+  color: #FFCE00;
+  font-size: 12px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+}
+
+.login:hover p {
+  transform: scale(1.1, 1.1);
+}
+
+.user-dn {
+  height: 50px;
+  overflow: hidden;
+}
+
+.user-dn:hover .icon-user {
+  transform: scale(1.5, 1.5);
+}
+
+.user-dn .icon-user {
+  color: #FFCE00;
+  font-size: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.user-dn-hover {
+  color: white;
+  position: absolute;
+  font-size: 10px;
+  width: 100%;
+  height: 0;
+  transition: all 0.2s;
+  overflow: hidden;
+  background-color: #ffce0030;
+}
+
+.content-hover {
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.content-hover:hover {
+  text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+}
+
+.trangcanhan:focus {
+  outline: none;
+}
+
+/* -------------- RESPONSIVE------------------------ */
+.sidebar-mobi {
+  display: none;
+  background-color: black;
+}
+
+.sidebar-item {
+  font-size: 20px;
+  color: #FFCE00;
+}
+
+/* ----------------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar-mobi {
+    display: block;
+    height: 80px;
+  }
+
+  .sidebar-item {
+    padding: 0 20px;
+  }
+
+  .user-dn {
+    height: auto;
+  }
+
+  .user-dn-hover {
+    color: black;
+    position: absolute;
+    font-size: 10px;
+    margin-top: 75px;
+    transition: all 0.2s;
+    overflow: hidden;
+    background-color: #ffce00;
+  }
+}

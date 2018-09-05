@@ -1,0 +1,39 @@
+/* SCREEN */
+.screen {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  border-top: 2px solid #FFCE00;
+  box-shadow: 0px 110px 71px -126px gold inset;
+  border-radius: 15px 15px 0 0;
+}
+
+.screen p {
+  color: gray;
+  font-size: 12px;
+}
+
+.list-chair {
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Time coutdown */
+.time {
+  font-size: 40px;
+  text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 20px gold;
+}
+
+/* TB Chọn Ghế */
+.tbChonGhe {
+  font-size: 20px;
+}
+
+/* -----------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .list-chair {
+    width: 100%;
+  }
+}

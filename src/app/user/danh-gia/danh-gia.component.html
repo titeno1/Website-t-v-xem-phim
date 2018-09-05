@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12 col-sm-6 d-flex justify-content-center align-items-center">
+    <div class="form-danhgia">
+      <h3 class="text-center">Đánh giá phim</h3>
+      <form class="text-center" #formDanhGia="ngForm" (ngSubmit)="DanhGia(formDanhGia.value)">
+        <input class="input-name" type="text" placeholder="Tên của bạn?" #ten='ngModel' ngModel name="Ten">
+        <hr>
+        <hr>
+        <textarea class="input-area" name="input-danhgia" cols="30" rows="30" placeholder="Đánh giá về bộ phim?"
+          #noidung='ngModel' ngModel name="NoiDung"></textarea>
+        <hr>
+        <!-- Rate -->
+        <fieldset class="rate">
+          <input class="input-rate" id="rate2-star5" type="radio" name="rate2" value="5" #rate='ngModel' ngModel name="Rate" />
+          <label for="rate2-star5" title="Awesome">5</label>
+
+          <input class="input-rate" id="rate2-star5-half" type="radio" name="rate2" value="4.5" #rate='ngModel' ngModel
+            name="Rate" />
+          <label class="star-half" for="rate2-star5-half" title="Excellent">4.5</label>
+
+          <input class="input-rate" id="rate2-star4" type="radio" name="rate2" value="4" #rate='ngModel' ngModel name="Rate" />
+          <label for="rate2-star4" title="Very good">4</label>
+
+          <input class="input-rate" id="rate2-star3-half" type="radio" name="rate2" value="3.5" #rate='ngModel' ngModel
+            name="Rate" />
+          <label class="star-half" for="rate2-star3-half" title="Good">3.5</label>
+
+          <input class="input-rate" id="rate2-star3" type="radio" name="rate2" value="3" #rate='ngModel' ngModel name="Rate" />
+          <label for="rate2-star3" title="Satisfactory">3</label>
+
+          <input class="input-rate" id="rate2-star2-half" type="radio" name="rate2" value="2.5" #rate='ngModel' ngModel
+            name="Rate" />
+          <label class="star-half" for="rate2-star2-half" title="Unsatisfactory">2.5</label>
+
+          <input class="input-rate" id="rate2-star2" type="radio" name="rate2" value="2" #rate='ngModel' ngModel name="Rate" />
+          <label for="rate2-star2" title="Bad">2</label>
+
+          <input class="input-rate" id="rate2-star1-half" type="radio" name="rate2" value="1.5" #rate='ngModel' ngModel
+            name="Rate" />
+          <label class="star-half" for="rate2-star1-half" title="Very bad">1.5</label>
+
+          <input class="input-rate" id="rate2-star1" type="radio" name="rate2" value="1" #rate='ngModel' ngModel name="Rate" />
+          <label for="rate2-star1" title="Awful">1</label>
+
+          <input class="input-rate" id="rate2-star0-half" type="radio" name="rate2" value="0.5" #rate='ngModel' ngModel
+            name="Rate" />
+          <label class="star-half" for="rate2-star0-half" title="Horrific">0.5</label>
+        </fieldset>
+        <hr class="hr-btn">
+        <button type="submit" class="btn-danhgia" [ngClass]="{'btn-active': statusBtn}">
+          <i class="fa fa-check-circle"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="div-noover col-12 col-sm-6 d-flex justify-content-center align-items-center">
+    <div class="hienthi-danhgia pl-sm-5">
+      <div class="row">
+        <div class="col-12 py-4 animated fadeInRight" *ngFor="let danhgia of listDanhGia">
+          <div class="item-danhgia d-flex">
+            <div class="title">
+              <app-item-point>{{danhgia.Rate}}</app-item-point>
+              <span class="text-white font-weight-bold">{{danhgia.Ten}}</span>
+            </div>
+            <div class="content">
+              <p class="text-white">{{danhgia.NoiDung}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

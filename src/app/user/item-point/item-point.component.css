@@ -1,0 +1,20 @@
+.icon i {
+  color: #FFCE00;
+  font-size: 35px;
+}
+
+.point {
+  font-size: 25px;
+  color: #FFCE00;
+}
+
+/* ----------------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .icon i {
+    font-size: 20px;
+  }
+
+  .point {
+    font-size: 10px;
+  }
+}

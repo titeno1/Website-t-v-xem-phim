@@ -1,0 +1,210 @@
+<div class="app-title">
+  <div>
+    <h1>
+      <i class="fa fa-th-list"></i> Quản Lý Phim</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <i class="fa fa-home fa-lg">Trang Chủ</i>
+    </li>
+    <li class="breadcrumb-item active">
+      <a href="#">Quản Lý Phim</a>
+    </li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="row">
+          <div class="col-md-6">
+              <button id="btnThemNguoiDung" class="btn btn-success mb-2" data-toggle="modal" data-target="#exampleModal">Thêm Phim
+                <i class="icon-user"></i>
+              </button>
+              </div>
+              <div class="col-md-6">
+                  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="tìm kiếm...">  
+              </div>
+      </div>
+      <div class="table-responsive table100">
+        <table class="table">
+          <thead>
+            <tr class="table100-head">
+              <th>#</th>
+              <th (click)="sort('TenPhim')">Tên Phim <span class="fa fa-sort-amount-asc" *ngIf="key =='TenPhim'" [ngClass]="{'fa fa-sort-amount-asc':reverse,'fa fa-sort-amount-desc':!reverse}"></span></th>
+              <th>Hình Ảnh</th>
+              <th>Trailer</th>
+              <th>Ngày Khởi Chiếu</th>
+              <th>Đánh Giá</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let phim of mangPhim | orderBy: key : reverse | filter:filter | paginate:{itemsPerPage:4,currentPage:p}; let i = index">
+              <td>{{i}}</td>
+              <td>{{phim.TenPhim}}</td>
+              <td><img [src]="phim.HinhAnh" alt="" class="img-fluid" width="100px;"/></td>
+              <td>{{phim.Trailer}}</td>
+              <td>{{phim.NgayKhoiChieu}}</td>
+              <td>{{phim.DanhGia | number}}</td>
+              <td>
+                <button class="btn btn-outline-primary"
+                #btnChinhSua
+                [attr.data-maPhim]="phim.MaPhim"
+                [attr.data-tenPhim]="phim.TenPhim"
+                [attr.data-hinhAnh]="phim.HinhAnh"
+                [attr.data-Trailer]="phim.Trailer"
+                [attr.data-moTa]="phim.MoTa"
+                [attr.data-ngayKhoiChieu]="phim.NgayKhoiChieu"
+                [attr.data-DanhGia]="phim.DanhGia"
+              (click)="ChinhSuaPhim(btnChinhSua)"
+              data-toggle="modal" data-target="#ModalCapNhat"
+                ><i class="fa fa-edit"></i></button>
+                <button class="btn btn-outline-danger"
+                [attr.data-maPhim]="phim.MaPhim"
+                [attr.data-tenPhim]="phim.TenPhim"
+                [attr.data-hinhAnh]="phim.HinhAnh"
+                [attr.data-Trailer]="phim.Trailer"
+                [attr.data-moTa]="phim.MoTa"
+                [attr.data-ngayKhoiChieu]="phim.NgayKhoiChieu"
+                [attr.data-DanhGia]="phim.DanhGia"
+              (click)="XoaPhim(phim.MaPhim)"
+                ><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm Phim</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="btnDongformTP" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #formThemPhim="ngForm" (ngSubmit)="themPhim(formThemPhim.value,hinhAnh.files)">
+          <div class="form-group">
+            <label for="">Tên Phim: </label>
+            <input type="text" class="form-control" required #tenphim="ngModel" name="TenPhim" ngModel>
+            <div *ngIf="tenphim.errors && (tenphim.touched || tenphim.dirty)">
+              <div class="alert alert-danger" *ngIf="tenphim.errors.required">Vui lòng nhập tên phim ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Trailer: </label>
+            <input type="text" class="form-control" required #gioithieu="ngModel" name="Trailer" ngModel>
+            <div *ngIf="gioithieu.errors && (gioithieu.touched || gioithieu.dirty)">
+              <div class="alert alert-danger" *ngIf="gioithieu.errors.required">Vui lòng gắn trailer ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Hình Ảnh: </label>
+            <input type="file" #hinhAnh >
+          </div>
+          <div class="form-group">
+            <label for="">Mô Tả: </label>
+            <textarea type="text" class="form-control" required #mota="ngModel" name="MoTa" ngModel></textarea>
+            <div *ngIf="mota.errors && (mota.touched || mota.dirty)">
+              <div class="alert alert-danger" *ngIf="mota.errors.required">Vui lòng nhập mô tả ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Ngày Khởi Chiếu: </label>
+            <input type="date" class="form-control" required #ngaykhoichieu="ngModel" name="NgayKhoiChieu" ngModel>
+            <div *ngIf="ngaykhoichieu.errors && (ngaykhoichieu.touched || ngaykhoichieu.dirty)">
+              <div class="alert alert-danger" *ngIf="ngaykhoichieu.errors.required">Vui lòng nhập ngày khởi chiếu ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Đánh Giá: </label>
+            <input type="text" class="form-control" required #danhgia="ngModel" name="DanhGia" ngModel>
+            <div *ngIf="danhgia.errors && (danhgia.touched || danhgia.dirty)">
+              <div class="alert alert-danger" *ngIf="danhgia.errors.required">Vui lòng nhập đánh giá ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-info" [disabled]="formThemPhim.invalid" type="submit">Thêm Phim</button>
+          </div>
+        </form>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Cập nhật phim -->
+<div class="modal fade" id="ModalCapNhat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chỉnh Sửa Phim</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="btnDongformCNP" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #formCapNhatPhim="ngForm" (ngSubmit)="CapNhatPhim(formCapNhatPhim.value,HinhAnh.files)">
+            <div class="form-group">
+                <label for="">Mã Phim: </label>
+                <input type="text" class="form-control" required #MaPhim="ngModel" name="MaPhim" ngModel readonly>
+              </div>
+          <div class="form-group">
+            <label for="">Tên Phim: </label>
+            <input type="text" class="form-control" required #tenPhim="ngModel" name="TenPhim" ngModel>
+            <div *ngIf="tenPhim.errors && (tenPhim.touched || tenPhim.dirty)">
+              <div class="alert alert-danger" *ngIf="tenPhim.errors.required">Vui lòng nhập tên phim ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Trailer: </label>
+            <input type="text" class="form-control" required #trailer="ngModel" name="Trailer" ngModel>
+            <div *ngIf="trailer.errors && (trailer.touched || trailer.dirty)">
+              <div class="alert alert-danger" *ngIf="trailer.errors.required">Vui lòng gắn trailer ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Hình Ảnh: </label>
+            <input type="file" #HinhAnh >
+          </div>
+          <div class="form-group">
+            <label for="">Mô Tả: </label>
+            <textarea type="text" class="form-control" required #moTa="ngModel" name="MoTa" ngModel></textarea>
+            <div *ngIf="moTa.errors && (moTa.touched || moTa.dirty)">
+              <div class="alert alert-danger" *ngIf="moTa.errors.required">Vui lòng nhập mô tả ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Ngày Khởi Chiếu: </label>
+            <input type="date" class="form-control" required #ngayKhoiChieu="ngModel" name="NgayKhoiChieu" ngModel>
+            <div *ngIf="ngayKhoiChieu.errors && (ngayKhoiChieu.touched || ngayKhoiChieu.dirty)">
+              <div class="alert alert-danger" *ngIf="ngayKhoiChieu.errors.required">Vui lòng nhập ngày khởi chiếu ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Đánh Giá: </label>
+            <input type="text" class="form-control" required #danhGia="ngModel" name="DanhGia" ngModel>
+            <div *ngIf="danhGia.errors && (danhGia.touched || danhGia.dirty)">
+              <div class="alert alert-danger" *ngIf="danhGia.errors.required">Vui lòng nhập đánh giá ! </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-info" [disabled]="formCapNhatPhim.invalid" type="submit">Cập Nhật Phim</button>
+          </div>
+        </form>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container pt-4 list-phim">
+  <div class="row">
+    <div class="btn-tab col-12 d-flex align-items-center justify-content-center">
+      <div class="tab-dang text-right">
+        <p [ngClass]="{'active': status}" (click)="PhimDangChieu()">ĐANG CHIẾU</p>
+      </div>
+      <div class="tab-sap text-left">
+        <p [ngClass]="{'active': !status}" (click)="PhimSapChieu()">SẮP CHIẾU</p>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="container-fluid animated fadeIn" *ngIf="status;else phimsapchieu">
+      <app-phim-dang-chieu></app-phim-dang-chieu>
+    </div>
+    <ng-template #phimsapchieu>
+      <div class="container-fluid animated fadeIn">
+        <app-phim-sap-chieu></app-phim-sap-chieu>
+      </div>
+    </ng-template>
+  </div>
+</div>

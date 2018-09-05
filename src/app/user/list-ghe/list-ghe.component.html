@@ -1,0 +1,50 @@
+<div class="coutdownTime">
+  <p class="time text-white text-center" *ngIf="statusCoutdown; else tbOutTime">{{coutdownTimeMi}}:{{coutdownTimeSe}}</p>
+  <ng-template #tbOutTime>
+    <p class="time text-white text-center animated fadeIn">Hết thời gian đặt ghế!</p>
+  </ng-template>
+</div>
+<div class="screen" *ngIf="statusCoutdown">
+  <p class="text-center animated fadeIn">SCREEN</p>
+</div>
+<div class="list-chair" *ngIf="statusCoutdown">
+  <div class="container">
+    <div class="row">
+      <div class="col-3 text-center">
+        <app-item-ghe (eventDatGhe)="datGheParent($event)" *ngFor="let ghetrai of listGheTrai" [itemGhe]="ghetrai"
+          class="animated fadeInLeft"></app-item-ghe>
+      </div>
+      <div class="col-6 text-center">
+        <app-item-ghe (eventDatGhe)="datGheParent($event)" *ngFor="let ghegiua of listGheGiua" [itemGhe]="ghegiua"
+          class="animated fadeInUp"></app-item-ghe>
+      </div>
+      <div class="col-3 text-center">
+        <app-item-ghe (eventDatGhe)="datGheParent($event)" *ngFor="let ghephai of listGhePhai" [itemGhe]="ghephai"
+          class="animated fadeInRight"></app-item-ghe>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note-chair animated fadeIn" *ngIf="statusCoutdown">
+  <div class="container">
+    <div class="row px-sm-5 py-sm-5">
+      <div class="col-12 col-sm-3">
+      </div>
+      <div class="col-12 col-sm-3 d-flex justify-content-center ">
+        <img class="mr-2" src="./../../../assets/img/icon/cinema-chair-chuadat.svg" alt="" width="20px" height="20px">
+        <p class="text-white">Ghế chưa chọn</p>
+      </div>
+      <div class="col-12 col-sm-3 d-flex justify-content-center">
+        <img class="mr-2" src="./../../../assets/img/icon/cinema-chair-vang.svg" alt="" width="20px" height="20px">
+        <p class="text-white">Ghế đã chọn</p>
+      </div>
+      <div class="col-12 col-sm-3">
+      </div>
+      <div class="col-12">
+        <p class="text-center text-danger tbChonGhe" *ngIf="statusChonGhe">
+          <i class="fa fa-times"></i> Vui lòng chọn ghế
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

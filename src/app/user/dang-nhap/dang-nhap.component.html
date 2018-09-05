@@ -1,0 +1,69 @@
+<div data-dismiss="modal" class="closeLogin" (click)="CloseDN()">
+  <i class="fa fa-times"></i>
+</div>
+<form #formDangNhap="ngForm" (ngSubmit)="DangNhap(formDangNhap.value)">
+  <div class="sign-with">
+    <p class="sign-with-title font-weight-bold">
+      <span class="animated fadeIn" *ngIf="!status;else man">Đăng Nhập Với</span>
+      <ng-template #man>
+        <span class="animated fadeIn">Đăng Ký Với</span>
+      </ng-template>
+    </p>
+    <div class="sign-with-content d-flex justify-content-center align-items-center">
+      <div class="facebook item">
+        <i class="fa fa-facebook"></i>
+      </div>
+      <div class="google item">
+        <i class="fa fa-google"></i>
+      </div>
+    </div>
+  </div>
+  <div class="sign-with-tk mt-5">
+    <div class="canhbao">
+      <p class="text-danger animated zoomIn" *ngIf="!validDN">
+        <i class="tbfalse-icon fa fa-times pr-3"></i>KIỂM TRA LẠI THÔNG TIN</p>
+      <p class="text-success animated zoomIn dnSuc">
+        <i class="tbfalse-icon fa fa-check pr-3"></i>THÀNH CÔNG</p>
+    </div>
+    <div class="sign-with-content">
+      <div>
+        <input type="text" placeholder="TÀI KHOẢN" #taikhoan='ngModel' ngModel name="TaiKhoan" required [pattern]='"^[a-z0-9_-]{3,16}$"'>
+        <input type="password" placeholder="MẬT KHẨU" #matkhau='ngModel' ngModel name="MatKhau" required minlength="3"
+          maxlength="15">
+      </div>
+      <div class="dangky" [ngClass]="{'dangky-show': status}">
+        <input type="text" placeholder="EMAIL" #email='ngModel' ngModel name="Email" required [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"'>
+        <input type="text" placeholder="SỐ ĐIỆN THOẠI" #sdt='ngModel' ngModel name="SoDT" required [pattern]='"^[0-9]{10,11}$"'>
+        <input type="text" placeholder="HỌ VÀ TÊN" class="hoten" #hoten='ngModel' ngModel name="HoTen" required
+          [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"'>
+      </div>
+      <!-- ----- -->
+      <button type="submit" class="btn-dn btn-dangnhap">
+        <app-load-item class="load"></app-load-item>
+        <span *ngIf="!status;else man3" class="animated fadeIn text-dn-dk">ĐĂNG NHẬP</span>
+        <ng-template #man3>
+          <span class="animated fadeIn text-dn-dk">ĐĂNG KÍ</span>
+        </ng-template>
+      </button>
+      <!-- ----- -->
+      <div class="quenmk mt-3">
+        <p class="sign-with-sub animated fadeIn" *ngIf="!status">QUÊN MẬT KHẨU</p>
+      </div>
+      <p class="sign-with-title font-weight-bold mt-2 animated fadeInUp" *ngIf="!status;else man1">
+        BẠN CHƯA CÓ TÀI KHOẢN ?
+      </p>
+      <ng-template #man1>
+        <p class="sign-with-title font-weight-bold mt-2  animated fadeInUp">
+          BẠN ĐÃ CÓ TÀI KHOẢN RỒI !
+        </p>
+      </ng-template>
+      <button type="button" class="btn btn-link animated fadeIn" (click)="Stwich()" *ngIf="!status;else man2">Đăng Ký</button>
+      <ng-template #man2>
+        <button type="button" class="btn btn-link animated fadeIn" (click)="Stwich()">Đăng Nhập</button>
+      </ng-template>
+    </div>
+  </div>
+</form>

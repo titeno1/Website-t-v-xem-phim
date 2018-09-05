@@ -1,0 +1,188 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.side-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+
+.content {
+  background-color: black;
+  padding-left: 110px;
+  width: 100%;
+  z-index: 99;
+}
+
+.tcn {
+  height: 100vh;
+}
+
+.title p {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 5px gold,
+    0 0 10px gold,
+    0 0 20px gold,
+    0 0 40px gold,
+    0 0 80px gold;
+}
+
+.logo {
+  color: #FFCE00;
+  font-size: 50px;
+  margin: 0;
+}
+
+.name {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 5px gold,
+    0 0 10px gold,
+    0 0 20px gold,
+    0 0 40px gold,
+    0 0 80px gold;
+}
+
+.list-group-item {
+  background-color: #0c0c0c;
+  color: #908199;
+}
+
+.tab-pane {
+  background-color: #0c0c0c;
+  border-radius: .25rem;
+  height: 500px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 5% 10%;
+}
+
+.list-group .active {
+  background-color: #FFCE00;
+  color: black;
+  outline: none;
+  border: 1px solid #FFCE00;
+}
+
+.info-input {
+  width: 100%;
+  padding: 5px 20px;
+  border-radius: 2px;
+  outline: 0;
+  border: none;
+  color: #FFCE00;
+  background-color: transparent;
+  border-bottom: 1px solid #FFCE00;
+  margin-bottom: 30px;
+}
+
+label {
+  color: #908199;
+  margin: 0;
+}
+
+/* BTN */
+.btn {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  color: #FFCE00;
+  border: 1px solid #FFCE00;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.btn::before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  transform: skewX(-45deg) translateX(0);
+  transition: none;
+}
+
+.btn:hover {
+  background-color: #FFCE00;
+  color: black;
+  border-bottom: 4px solid darken(#FFCE00, 10%);
+}
+
+.btn:hover::before {
+  transform: skewX(-45deg) translateX(15.5em);
+  transition: all 0.5s ease-in-out;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn p {
+  font-size: 15px;
+  margin: 0;
+  padding: 5px 10px;
+}
+
+/* INPUT VALIDATION */
+input.ng-invalid.ng-touched {
+  border-bottom: 1px solid red;
+  color: red;
+}
+
+/* Thông tin */
+#list-ThongTin p {
+  color: #FFCE00;
+  margin: 40px 0;
+}
+
+#list-ThongTin .title {
+  color: #908199;
+  margin-right: 30px;
+}
+
+/* Lich sử */
+.statusLS {
+  font-size: 30px;
+  color: #FFCE00;
+}
+
+.item-lichsu {
+  padding: 10px;
+  border: 1px solid #FFCE00;
+  border-radius: .25rem;
+}
+
+.item-lichsu p {
+  color: #908199;
+}
+
+.item-lichsu p span {
+  color: #FFCE00;
+}
+
+/* -----------RESPONSIVE---------------- */
+@media screen and (max-width: 576px) {
+  .name {
+    font-size: 20px;
+  }
+
+  .content {
+    padding-left: 0;
+  }
+
+  .tcn {
+    height: auto;
+  }
+}
